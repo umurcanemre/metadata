@@ -9,7 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@Api(value = "Localizations API's")
+@Api(value = "Localization API's")
 @RequestMapping("/localization")
 public class LocalizationController {
 	@Value("${spring.profiles.active}")
