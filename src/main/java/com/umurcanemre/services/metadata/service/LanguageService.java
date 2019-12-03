@@ -1,11 +1,14 @@
 package com.umurcanemre.services.metadata.service;
 
-import java.util.List;
 import java.util.Set;
 
-import io.lettuce.core.KeyValue;
+import com.umurcanemre.services.metadata.domain.Language;
 
 public interface LanguageService {
-	Set<String> getAll();
-	List<KeyValue<String, String>> getLabelMap(String langCode, List<String> labels);
+	// QUERIES
+	Set<Language> getAll();
+	
+	// CRUDs
+	void putLanguage(Language language);
+	void removeLanguage(Language language);
 }
