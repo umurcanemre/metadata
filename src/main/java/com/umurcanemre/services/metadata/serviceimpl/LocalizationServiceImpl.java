@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.umurcanemre.services.metadata.service.LocalizationService;
 
@@ -12,6 +13,7 @@ import io.lettuce.core.api.sync.RedisCommands;
 
 public class LocalizationServiceImpl implements LocalizationService {
 	@Autowired
+	@Qualifier(value = "localizationConnection")
 	private RedisCommands<String, String> redis;
 
 	@Override

@@ -1,9 +1,16 @@
 package com.umurcanemre.services.metadata.domain;
 
+import java.util.Map;
+
+import com.umurcanemre.services.metadata.domain.helper.LanguageHelper;
+
 import lombok.Data;
 
 @Data
 public class Language {
+	public static final String CODE = "code";
+	public static final String NAME = "name";
+	public static final String FORMATTEDNAME = "formatted_name";
 	private String code;
 	private String name;
 	private String formattedName;
@@ -40,5 +47,13 @@ public class Language {
 	@Override
 	public int hashCode() {
 		return (code.hashCode()*29) + (name.hashCode()*19);
+	}
+	
+	public Map<String,String> toMap(){
+		return LanguageHelper.toMap(this);
+	}
+	
+	public static String[] getFields() {
+		return new String[] {CODE,NAME,FORMATTEDNAME};
 	}
 }

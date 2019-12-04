@@ -38,8 +38,22 @@ public class AppConfig {
 
 	}
 
-	@Bean
-	public RedisCommands<String, String> redisCommands() {
+	@Bean (name = "languageConnection")
+	public RedisCommands<String, String> redisDb0Commands() {
+		RedisURI uri = RedisURI.Builder
+				.redis("localhost",6379)
+				.withPassword(redisServerAuth)
+				.withDatabase(0)
+				.build();
+
+		RedisClient client = RedisClient.create(uri);
+		StatefulRedisConnection<String, String> conn = client.connect();
+
+		return conn.sync();
+	}
+
+	@Bean (name = "localizationConnection")
+	public RedisCommands<String, String> redisDb1Commands() {
 		RedisURI uri = RedisURI.Builder
 				.redis("localhost",6379)
 				.withPassword(redisServerAuth)
