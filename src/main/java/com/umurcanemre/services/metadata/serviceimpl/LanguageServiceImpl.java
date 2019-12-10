@@ -50,12 +50,14 @@ public class LanguageServiceImpl implements LanguageService {
 	}
 
 	@Override
-	public void putLanguage(Language language) {
-		if(language.getCode().equals(SET_KEY)) {
-			throw new InvalidParameterException(SET_KEY + "cannot be a language code");
+	public void putLanguage(Set<Language> languages) {
+		for(Language language : languages) {
+			if(language.getCode().equals(SET_KEY)) {
+				throw new InvalidParameterException(SET_KEY + "cannot be a language code");
+			}
+			redis.sadd(SET_KEY, language.getCode());
+			redis.hmset(HASH_KEY_PREFIX + language.getCode(), language.toMap());
 		}
-		redis.sadd(SET_KEY, language.getCode());
-		redis.hmset(HASH_KEY_PREFIX + language.getCode(), language.toMap());
 	}
 
 	@Override
