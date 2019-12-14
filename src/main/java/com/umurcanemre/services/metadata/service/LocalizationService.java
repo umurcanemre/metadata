@@ -8,6 +8,6 @@ public interface LocalizationService {
 	Map<String, String>  getLabelMap(String langCode, List<String> labels);
 	
 	// CRUDs
-	void putLabels(String langCode, Map<String,String> values);
+	void postLabels(String langCode, Map<String,String> values);
 	void removeLabels(String langCode, List<String> labels);
 }

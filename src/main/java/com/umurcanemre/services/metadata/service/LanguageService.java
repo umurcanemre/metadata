@@ -1,6 +1,7 @@
 package com.umurcanemre.services.metadata.service;
 
 import java.security.InvalidParameterException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,13 +15,7 @@ public interface LanguageService {
 	 * @param codes
 	 * @return Language objects mapped by their codes
 	 */
-	Map<String,Map<String, String>> get(Set<String> codes);
-
-	/**
-	 * Get all language codes
-	 * @return all language codes as a set of strings
-	 */
-	Set<String> getAllCodes();
+	Map<String,Map<String, String>> get(List<String> codes);
 
 	// CRUDs
 	/**

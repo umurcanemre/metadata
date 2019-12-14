@@ -64,4 +64,18 @@ public class AppConfig {
 
 		return conn.sync();
 	}
+
+	@Bean (name = "countryConnection")
+	public RedisCommands<String, String> redisDb2Commands() {
+		RedisURI uri = RedisURI.Builder
+				.redis("localhost",6379)
+				.withPassword(redisServerAuth)
+				.withDatabase(2)
+				.build();
+
+		RedisClient client = RedisClient.create(uri);
+		StatefulRedisConnection<String, String> conn = client.connect();
+
+		return conn.sync();
+	}
 }

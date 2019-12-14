@@ -32,7 +32,7 @@ public class LocalizationServiceImpl implements LocalizationService {
 	}
 
 	@Override
-	public void putLabels(String langCode, Map<String,String> values) { 
+	public void postLabels(String langCode, Map<String,String> values) { 
 		redis.hmset(langCode, values);
 	}
 

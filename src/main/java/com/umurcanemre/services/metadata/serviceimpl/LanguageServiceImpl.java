@@ -1,6 +1,7 @@
 package com.umurcanemre.services.metadata.serviceimpl;
 
 import java.security.InvalidParameterException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,11 +27,11 @@ public class LanguageServiceImpl implements LanguageService {
 	private static final String HASH_KEY_PREFIX = "lang_";
 
 	@Override
-	public Map<String,Map<String, String>> get(Set<String> codes) {
+	public Map<String,Map<String, String>> get(List<String> codes) {
 		Map<String, Map<String, String>> map = new HashMap<>();
-		codes = CollectionUtils.isEmpty(codes) ? getAllCodes() : codes;
+		Collection<String> result = CollectionUtils.isEmpty(codes) ? getAllCodes() : codes;
 
-		codes.forEach(c -> map.put(c, getOne(c)));
+		result.forEach(c -> map.put(c, getOne(c)));
 
 		return map;
 	}
@@ -44,8 +45,7 @@ public class LanguageServiceImpl implements LanguageService {
 		return result;
 	}
 
-	@Override
-	public Set<String> getAllCodes() {
+	private Set<String> getAllCodes() {
 		return redis.smembers(SET_KEY);
 	}
 
